@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        // Step 1: free check — different lengths can't be anagrams
+        if (s.size() != t.size()) {
+            return false;
+        }
+
+        unordered_map<char, int> count;
+
+        // Step 2: count up for every character in s
+        for (int i = 0; i < s.size(); i++) {
+            count[s[i]]++;
+        }
+
+        // Step 3: count down for every character in t
+        for (int i = 0; i < t.size(); i++) {
+            count[t[i]]--;
+        }
+
+        // Step 4: check that everything balanced out to zero
+        for (auto p : count) {
+            if (p.second != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+};
