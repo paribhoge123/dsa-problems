@@ -61,3 +61,55 @@ p in for (auto p : m) is a pair<int, int> — p.first is the number (key), p.sec
 Complexity
 Time: O(n) — one pass to build the map, one pass over the map (at most n distinct keys) to find the max.
 Space: O(n) — the map can hold up to n distinct keys in the worst case.
+
+
+
+## Moore's Voting Algorithm
+
+The **Moore's Voting Algorithm** finds the majority element in `O(n)` time using **O(1) extra space**.
+
+### Idea
+
+The majority element appears **more than `n/2` times**.
+
+Think of every majority element as getting **+1 vote** and every different element as getting **-1 vote**.
+
+Since the majority element occurs more than all other elements combined, it will **survive the cancellation**.
+
+### Algorithm
+
+Maintain two variables:
+
+```cpp
+candidate
+count
+```
+
+* If `count == 0`, choose the current element as the new `candidate`.
+* If the current element equals `candidate`, increase `count`.
+* Otherwise, decrease `count`.
+
+```
+
+### Example
+
+```text
+nums = [2,2,1,1,1,2,2]
+
+candidate = 2
+count    → 1 → 2 → 1 → 0 → 1 → 0 → 1
+
+Majority element = 2
+```
+
+### Complexity
+
+* **Time:** `O(n)`
+* **Space:** `O(1)`
+
+### Key Idea
+
+> **Different elements cancel each other out. Since the majority element has more than `n/2` occurrences, it cannot be completely cancelled.**
+
+**Moore's Voting Algorithm = Majority Element in O(n) time + O(1) space.**
+
